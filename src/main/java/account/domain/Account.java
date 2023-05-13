@@ -1,11 +1,18 @@
 package account.domain;
 
+import lombok.AccessLevel;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.Value;
+
 import java.time.LocalDateTime;
 
 /**
  * 입금과 출금을 할 수 있는 엔티티
  */
 
+@Getter
+@AllArgsConstructor(access = AccessLevel.PRIVATE)
 public class Account {
 
     private AccountId id;
@@ -40,6 +47,14 @@ public class Account {
         return true;
     }
 
+    public static Account withId(
+            AccountId accountId,
+            Money baselineBalance,
+            ActivityWindow activityWindow) {
+        return new Account(accountId, baselineBalance, activityWindow);
+    }
+
+    @Value
     public static class AccountId {
         private Long value;
     }

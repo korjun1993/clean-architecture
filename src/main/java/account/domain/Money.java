@@ -1,7 +1,10 @@
 package account.domain;
 
+import lombok.Getter;
+
 import java.math.BigInteger;
 
+@Getter
 public record Money(BigInteger amount) {
     public static Money ZERO = Money.of(0L);
 
